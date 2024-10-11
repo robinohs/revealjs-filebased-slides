@@ -13,7 +13,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' &&  github.ref_type == 'tag' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Release
         run: echo "Release"
@@ -34,5 +34,12 @@ jobs:
           github-token: ${{ github.token }}
           repository: ${{ github.repository }}
           run-id: ${{ steps.get-run-id.outputs.run-id }}
-      - name: Display structure of downloaded files
-        run: ls -R
+      - uses: ghalactic/github-release-from-tag@v5
+        with:
+          draft: "true"
+          generateReleaseNotes: "true"
+          prerelease: "false"
+          reactions: +1,laugh,hooray,heart,rocket,eyes
+          assets: |
+            - path: slides-merger
+
