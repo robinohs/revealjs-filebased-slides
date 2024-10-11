@@ -53,7 +53,5 @@ jobs:
         with:
           draft: "true"
           generateReleaseNotes: "true"
-          prerelease: "false"
-          reactions: +1,laugh,hooray,heart,rocket,eyes
           assets: |
             - path: slide-merger
