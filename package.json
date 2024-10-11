@@ -1,0 +1,24 @@
+{
+	"name": "slide-merger",
+	"module": "main.ts",
+	"type": "module",
+	"scripts": {
+		"start": "bun run src/main.ts",
+		"dev": "bun run src/main.ts watch test-presentation/template.html test-presentation/slides test-presentation/index.html",
+		"test-presentation": "cd test-presentation && bun start",
+		"compile": "bun build --compile --minify src/main.ts --outfile dist/slide-merger"
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"@types/jsdom": "^21.1.7",
+		"@types/yargs": "^17.0.33"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"jsdom": "^25.0.1",
+		"walk-it": "^5.0.1",
+		"yargs": "^17.7.2"
+	}
+}
