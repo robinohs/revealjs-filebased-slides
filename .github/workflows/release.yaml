@@ -16,3 +16,8 @@ jobs:
     steps:
       - name: Release
         run: echo "Release"
+      - uses: actions/download-artifact@v4
+        with:
+          name: binary
+      - name: Display structure of downloaded files
+        run: ls -R
