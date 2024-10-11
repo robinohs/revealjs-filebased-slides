@@ -27,6 +27,10 @@ jobs:
           echo "run-id=${RUN_ID}" >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ github.token }}
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: refs/tags/${{ inputs.tag }}
       - name: Download binary
         uses: actions/download-artifact@v4
         with:
@@ -42,4 +46,3 @@ jobs:
           reactions: +1,laugh,hooray,heart,rocket,eyes
           assets: |
             - path: slides-merger
-
