@@ -43,6 +43,8 @@ jobs:
       #     echo "run-id=${RUN_ID}" >> "$GITHUB_OUTPUT"
       #   env:
       #     GH_TOKEN: ${{ github.token }}
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Download binary
         uses: actions/download-artifact@v4
         with:
