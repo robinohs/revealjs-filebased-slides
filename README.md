@@ -1,5 +1,7 @@
 # slide-merger
 
+[![build](https://github.com/robinohs/revealjs-filebased-slides/actions/workflows/build.yaml/badge.svg)](https://github.com/robinohs/revealjs-filebased-slides/actions/workflows/build.yaml)
+
 To install dependencies:
 
 ```bash
