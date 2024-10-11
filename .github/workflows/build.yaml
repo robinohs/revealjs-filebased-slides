@@ -23,3 +23,36 @@ jobs:
         with:
           name: binary
           path: dist/slide-merger
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # - name: Release
+      #   run: echo "Release"
+      # - name: Get run ID of "Test" workflow
+      #   id: get-run-id
+      #   run: |
+      #     OTHER_REPO="${{ github.repository }}"
+      #     WF_NAME="build"
+      #     RUN_ID=`gh run --repo ${OTHER_REPO} list --workflow ${WF_NAME} --json databaseId --jq .[0].databaseId`
+      #     echo "Detected latest run id of ${RUN_ID} for workflow ${WF_NAME}"
+      #     echo "run-id=${RUN_ID}" >> "$GITHUB_OUTPUT"
+      #   env:
+      #     GH_TOKEN: ${{ github.token }}
+      - name: Download binary
+        uses: actions/download-artifact@v4
+        with:
+          name: binary
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.get-run-id.outputs.run-id }}
+      - uses: ghalactic/github-release-from-tag@v5
+        if: github.ref_type == 'tag'
+        with:
+          draft: "true"
+          generateReleaseNotes: "true"
+          prerelease: "false"
+          reactions: +1,laugh,hooray,heart,rocket,eyes
+          assets: |
+            - path: slides-merger
