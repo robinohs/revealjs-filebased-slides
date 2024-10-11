@@ -1,4 +1,4 @@
-name: Build slide-merger
+name: build
 
 on:
   push:
